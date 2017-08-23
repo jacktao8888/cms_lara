@@ -23,7 +23,15 @@ Route::group(['prefix' => 'admin'], function () {
         return view('register', ['name' => 'dear visitor']);
     });
 
-    Route::post('register/store', 'Auth\RegisterController@store');
+    Route::post('register', 'Auth\RegisterController@store');
+
+//    Route::get('login', function () {
+//        return view('login', ['name' => 'dear member']);
+//    });
+
+    Route::get('login', 'Auth\LoginController@show');
+
+    Route::post('login', 'Auth\LoginController@confirm');
 
     Route::get('index', function () {
         return view('index');
@@ -32,3 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 //Route::get('hello/world', 'HelloController@index');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -17,35 +17,35 @@
         <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body style="padding-top:40px">
-        <form class="form-horizontal" style="margin: 0 auto;max-width:500px" method="post" action='register/store'>
+        <form class="form-horizontal" style="margin: 0 auto;max-width:500px" method="post" action='register'>
             <h3>Hello, {{ $name }}</h3>
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">用户名</label>
                 <label style="color: #f00;">*</label>
                 <div class="col-sm-5">
-                    <input name="username" id="username" type="text" class="form-control" placeholder="字母、数字、下划线、破折号"/>
+                    <input name="username" id="username" type="text" class="form-control" placeholder="字母、数字、下划线、破折号" value="{{old('username')}}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">密码</label>
                 <label style="color: #f00;">*</label>
                 <div class="col-sm-5">
-                    <input name="password" id="password" class="form-control" type="password" placeholder="至少6位"/>
+                    <input name="password" id="password" class="form-control" type="password" placeholder="至少6位" value="{{old('password')}}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="password_confirmation" class="col-sm-3 control-label">确认密码</label>
                 <label style="color: #f00;">*</label>
                 <div class="col-sm-5">
-                    <input name="password_confirmation" id="password_confirmation" class="form-control" type="password" placeholder="须和密码一致"/>
+                    <input name="password_confirmation" id="password_confirmation" class="form-control" type="password" placeholder="须和密码一致" value="{{old('password_confirmation')}}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="mail" class="col-sm-3 control-label">邮箱</label>
                 <label style="color: #f00;"></label>
                 <div class="col-sm-5">
-                    <input name="mail" id="mail" class="form-control" type="text" placeholder="输入正确格式的邮箱地址"/>
+                    <input name="mail" id="mail" class="form-control" type="text" placeholder="输入正确格式的邮箱地址" value="{{old('mail')}}"/>
                 </div>
             </div>
             <div class="form-group">

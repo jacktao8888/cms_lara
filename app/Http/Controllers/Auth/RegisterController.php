@@ -90,7 +90,7 @@ class RegisterController extends Controller
 //        if (!empty($oldUser)) return redirect()->route('register');
 
         DB::transaction(function () {
-            DB::insert('insert into User (username, password) values (?,?)', [$_REQUEST['username'], bcrypt($_REQUEST['password_confirmation'])]);
+            DB::insert('insert into User (username, password) values (?,?)', [$_REQUEST['username'], password_hash($_REQUEST['password_confirmation'], PASSWORD_DEFAULT)]);
 
 //            DB::update('update User set password = ? where username = "Jerry"', ['Tom123']);
 //            DB::update('update User set password = ? where username = "Jerry"', ['Jerry567']);
@@ -102,5 +102,21 @@ class RegisterController extends Controller
             }
         }, 1);
         return '注册成功';
+    }
+
+    public function register(Request $request) {
+        $requestData = $request->all();
+        //print_r($requestData);
+        $update = array(
+            'name' => $requestData['name'],
+            'password' => $requestData['password_confirmation'],
+            'email' => $requestData['email'],
+            'remember_token' => $requestData['_token'],
+            'created_at' => date('Y-m-d H:i:s'),
+        );
+
+        DB::table('users')->insert($update);
+
+        return header($this->redirectTo);
     }
 }

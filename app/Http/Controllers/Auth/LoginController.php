@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -25,15 +27,34 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/index';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
+    public function __construct() {
+        //$this->middleware('guest')->except('logout');
+    }
+
+    public function show () {
+        //return $this->showLoginForm();
+        return view('login', ['name' => 'dear member']);
+    }
+
+    public function confirm(Request $request){
+        $this->validateLogin($request);
+
+        //print_r($request->all()['username']);
+        $passwd = DB::table('User')->where('username', $request->all()['username'])->value('password');
+        $passwd = !empty($passwd) ? $passwd : DB::table('User')->where('email', $request->all()['username'])->value('password');
+
+
+        if (password_verify($request->all()['password'],$passwd)) {
+            return redirect($this->redirectTo);
+        } else {
+            return "\n 0";
+        }
     }
 }
