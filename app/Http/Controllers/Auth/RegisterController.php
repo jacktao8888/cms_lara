@@ -58,6 +58,10 @@ class RegisterController extends Controller
         ])->validate();
     }
 
+
+    protected function index() {
+        return view('register')->with('name', 'dear visitor');
+    }
     /**
      * Create a new user instance after a valid registration.
      *

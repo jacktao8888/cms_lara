@@ -19,9 +19,10 @@ Route::group(['prefix' => 'admin'], function () {
 //        return view('welcome');
 //    })->where('name', '[A-Za-z]+');
 
-    Route::get('register', function () {
-        return view('register', ['name' => 'dear visitor']);
-    });
+    Route::get('register', [
+        'as' => 'admin/register',
+        'uses' => 'Auth\RegisterController@index'
+    ]);
 
     Route::post('register', 'Auth\RegisterController@store');
 
@@ -29,9 +30,12 @@ Route::group(['prefix' => 'admin'], function () {
 //        return view('login', ['name' => 'dear member']);
 //    });
 
-    Route::get('login', 'Auth\LoginController@show');
+    Route::get('login', [
+        'as' => 'admin/login',
+        'uses' => 'Auth\LoginController@show',
+    ]);
 
-    Route::post('login', 'Auth\LoginController@confirm');
+    //Route::post('login', 'Auth\LoginController@confirm');
 
     Route::get('index', function () {
         return view('index');
@@ -40,7 +44,13 @@ Route::group(['prefix' => 'admin'], function () {
 
 //Route::get('hello/world', 'HelloController@index');
 
+Route::get('/articles', 'ArticlesController@index');
 
-Auth::routes();
+//Route::get('articles/create', 'ArticlesController@create');
+
+Route::get('articles/{id}', 'ArticlesController@show');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('login', 'LoginController@index');
