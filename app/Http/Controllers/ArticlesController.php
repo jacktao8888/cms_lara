@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,8 +12,13 @@ class ArticlesController extends Controller
     //
     public function index() {
         //echo "hello";
-        $articles = Article::latest()->get();//$articles = Article::oldest()->get();
+        //$articles = Article::oldest()->get();//排序
+        //$articles = Article::latest()->where('created_at', '<=', Carbon::now())->get();//排序
+
+//        $articles = Article::all();
+        $articles = Article::latest()->created()->get();//queryScope,Models/Article::scopeCreated()
         //print_r($articles);
+
         return view('articles.index', compact('articles'));
     }
 
@@ -31,6 +37,7 @@ class ArticlesController extends Controller
        // print_r($request);
         //print_r($request->author);
 
+//        $request->get('title');
         Article::create($request->all());
 //        DB::insert('insert into articles (author, title, content) values (?,?,?)', [$request->author, $request->title, $request->content]);
         return redirect('articles');

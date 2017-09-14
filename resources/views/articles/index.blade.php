@@ -25,10 +25,11 @@ Hello
         <a href="{{ url('articles', $article->id) }}"><h2>{{ $article->title }}</h2></a>
         <a href={{ action('ArticlesController@show', $article->id) }}<h2>{{ $article->title }}</h2></a>
         -->
-    <h3>{{ $article->author }}</h3>
+    <h5>{{ $article->author }}</h5>
     <article>
         {{ $article->content }}
     </article>
+    <span style="color:red">{{ $article->created_at->diffForHumans() }}</span>
 @endforeach
 
 </body>

@@ -13,8 +13,10 @@
         </div>
         <div class="form-group">
             <label>内容</label>
-            <input type="text" name="content" value="" />
+            <textarea type="text" name="content" value=""></textarea>
         </div>
+
+        <date name="created_at" value="{{date('Y-m-d')}}" class="form-control"></date>
         <input type="submit" value="提交" />
     </form>
 @endsection
