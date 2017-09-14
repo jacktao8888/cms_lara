@@ -47,9 +47,11 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/articles', 'ArticlesController@index');
 
 //Route::get('articles/create', 'ArticlesController@create');
+Route::get('articles/create', 'ArticlesController@create');
 
 Route::get('articles/{id}', 'ArticlesController@show');
 
+Route::post('articles/save', 'ArticlesController@save');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
