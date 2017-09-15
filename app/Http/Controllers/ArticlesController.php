@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Redis;
+
 class ArticlesController extends Controller
 {
     //
@@ -18,6 +20,8 @@ class ArticlesController extends Controller
 //        $articles = Article::all();
         $articles = Article::latest()->created()->get();//queryScope,Models/Article::scopeCreated()
         //print_r($articles);
+
+        Redis::set('articles',1);
 
         return view('articles.index', compact('articles'));
     }
