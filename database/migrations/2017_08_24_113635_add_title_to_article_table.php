@@ -29,7 +29,7 @@ class AddTitleToArticleTable extends Migration
      */
     public function down()
     {
-        Schema::table('article', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
             //
             $table->dropColumn('title');
             $table->dropColumn('content');

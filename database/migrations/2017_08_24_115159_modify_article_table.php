@@ -27,7 +27,7 @@ class ModifyArticleTable extends Migration
      */
     public function down()
     {
-        Schema::table('article', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
             //
             $table->text('content')->change();
             $table->string('title', 50)->change();
