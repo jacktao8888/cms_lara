@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 //            print_r($query->bindings);
 //            print_r($query->time);
 //        });
+        Carbon::setLocale('zh');
     }
 
     /**

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\CreateArticleRequest;
 use Carbon\Carbon;
+//use Dotenv\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,11 +40,25 @@ class ArticlesController extends Controller
         return view('articles.change');
     }
 
-    public function save(Request $request) {
+    public function save(CreateArticleRequest $request) {
        // print_r($request);
         //print_r($request->author);
 
 //        $request->get('title');
+
+        //Validation
+//        Validator::make($request->all(), [
+//            'author' => 'required',
+//            'title' => 'required',
+//            'content' => 'required',
+//        ])->validate();
+
+//        $this->validate($request, [
+//            'author' => 'required|min:4',
+//            'title' => 'required',
+//            'content' => 'required',
+//        ]);
+
         Article::create($request->all());
 //        DB::insert('insert into articles (author, title, content) values (?,?,?)', [$request->author, $request->title, $request->content]);
         return redirect('articles');

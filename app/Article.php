@@ -12,7 +12,7 @@ class Article extends Model
     protected $dates = ['published_at'];//非Carbon对象的published_at被当做Carbon对象处理
 
     public function setCreatedAtAttribute($date){
-        $this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', $date);
+        $this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $date);
     }
 
     //Article::

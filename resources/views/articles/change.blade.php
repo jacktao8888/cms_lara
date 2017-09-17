@@ -19,4 +19,16 @@
         <date name="created_at" value="{{date('Y-m-d')}}" class="form-control"></date>
         <input type="submit" value="提交" />
     </form>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+        <ul>
+        @foreach($errors->all() as $error)
+            <li>
+                {{ $error }}
+            </li>
+        @endforeach
+        </ul>
+        </div>
+    @endif
 @endsection
